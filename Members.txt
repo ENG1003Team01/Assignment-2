@@ -8,18 +8,10 @@ MEMBER 3 ANDREW
  
 MEMBER 4 JORDAN
 
-<<<<<<< HEAD
-test
-=======
 SCOTT
  
 I own a cat.
  
 Role in project: team leader
  
-<<<<<<< HEAD
-Preferred branch of engineering: civil.
-=======
 Preferred branch of engineering: civil
->>>>>>> Scott
->>>>>>> master
