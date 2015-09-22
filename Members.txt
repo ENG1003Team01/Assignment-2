@@ -14,4 +14,4 @@ I own a cat.
  
 Role in project: team leader
  
-Preferred branch of engineering: civil
+Preferred branch of engineering: civil.
