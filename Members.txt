@@ -8,5 +8,15 @@ MEMBER 3 ANDREW
  
 MEMBER 4 JORDAN
 
+<<<<<<< HEAD
 test
 rach test
+=======
+SCOTT
+ 
+I own a cat.
+ 
+Role in project: team leader
+ 
+Preferred branch of engineering: civil
+>>>>>>> master
