@@ -7,3 +7,11 @@ MEMBER 2 RACHEL
 MEMBER 3 ANDREW
  
 MEMBER 4 JORDAN
+
+SCOTT
+ 
+I own a cat.
+ 
+Role in project: team leader
+ 
+Preferred branch of engineering: civil
