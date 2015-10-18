@@ -1,0 +1,120 @@
+<html>
+  <head>
+    <!-- Material Design Lite -->
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+        
+<!------------------ LAYOUT FIXED HEADER ---------------->
+      <!-- Always shows a header, even in smaller screens. -->
+<!-------------------- HEADER CONTENT------------------------>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">List of runs menu</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--small-screen"> <!----changed to small screen-->
+        <a class="mdl-navigation__link" href="">Link to another page(dunno if necessary)</a>
+      </nav>
+    </div>
+  </header>
+    <!------------------DRAWER CONTENT---------------->
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Side functions</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="">Return to main menu</a>
+      <a class="mdl-navigation__link" href="https://www.google.com.au/maps">Google maps</a>
+      <a class="mdl-navigation__link" href="http://www.monash.edu/">Monash website</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content"><!-- Your content goes here -->
+        
+    <!------------ TABLE HEADERS ---------->
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp"id=mytable>
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">Runs</th>
+      <th>Time taken</th>
+      <th>Distance covered</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+      
+      
+        </tbody>
+</table>
+        
+   <!------------- TABLE OF RUNS CONTENT --------------->
+        
+        
+      
+   <!------------- DELETE BUTTON CONTENT --------------->
+<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"id = "delete" onclick=deleteRow()>
+  Delete
+</button>
+ 
+           
+ <!------------- NEW RUN BUTTON CONTENT --------------->
+   <!----- SHOULD LINK TO ACTUAL RUNNING PAGE ------->
+<!-- made a create function but new run button should link to another page-->
+<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"id = "create" onclick=create()>
+  New run
+</button>
+        
+          
+          <label id="new"></label>
+        
+    <!------------ NEW RUN FUNCTION ------------------>
+    <!----- Need to figure out how to link it to table ------->
+        <!---- to make it selectable and delete --->
+        <!---- can't make use of textfields to name runs in here--->
+<!-- New run button should be linked to the run page -->
+        <script>
+            function create(){
+            var table = document.getElementById("mytable");
+            var row = table.insertRow(1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            cell1.innerHTML = "run";
+            cell2.innerHTML = "time taken";
+            cell3.innerHTML = "distance";
+            cell4.innerHTML = "some date";
+                
+            }
+                
+            function deleteRow(r) {
+                document.getElementById("mytable").deleteRow(1);
+        }
+            
+           
+      </script>
+        
+    <!---- FUNCTION to find best run ---->
+        </script>
+           <!-- function besttime(){
+            var run;
+            var average time taken
+            for (var i; i <= runid.length; i++){
+            if 
+            
+            }
+                                         } -->      
+      
+      
+      
+      </script>
+        
+      
+      </div>
+  </main>
+</div>
