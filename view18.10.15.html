@@ -65,53 +65,15 @@
     <div class="page-content"><!-- Your content goes here -->
         
     <!------------ TABLE HEADERS ---------->
+        
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--mdl-shadow--2dp" id="myTable" style="width:100%">
-  
-    <tr>
-      <th class="mdl-data-table__cell--non-numeric">Date</th>
-      <th>Distance</th>
-      <th>Time</th>
-      <th>Ave. Speed</th>
-
-    </tr>
-  
-            
-            
-  
-      <!--
-    <tr>
-      <td class="mdl-data-table__cell--non-numeric">run 1</td>
-      <td>25</td>
-      <td>2.91</td>
-      <td>2.91</td>
-      <td><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"id = "delete" onclick=deleteRow(this)>
-  Delete
-</button></td>
-    </tr>
-<tr>
-      <td class="mdl-data-table__cell--non-numeric">run 2</td>
-      <td>25</td>
-      <td>2.90</td>
-      <td>2.90</td>
-      <td><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"id = "delete" onclick=deleteRow(this)>
-  Delete
-</button></td>
-    </tr>
-
-<tr>
-      <td class="mdl-data-table__cell--non-numeric"id=row>run 3</td>
-      <td>25</td>
-      <td>2.92</td>
-      <td>2.92</td>
-      <td><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"id = "delete" onclick=deleteRow(this)>
-  Delete
-</button></td>
-    </tr>
-       -->
-
-
-
-</table>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Date</th>
+                <th>Distance</th>
+                <th>Time</th>
+                <th>Ave. Speed</th>
+            </tr>
+        </table>
         
    <!------------- TABLE OF RUNS CONTENT --------------->
         
@@ -148,24 +110,17 @@
             
             var tableRef = document.getElementById('myTable');
             
-            // Insert a row in the table at the last row
-            //var newRow   = tableRef.insertRow(1)
-
-            
-            // Insert a cell in the row at index 0
-            //var newCell  = newRow.insertCell(0);
-
             
             for (var i = 0; i < testObj.runDataArray.length; i++){
                 
                 var newRow   = tableRef.insertRow(1)
                 
-                date = testObj.runDataArray[i].today
+                name = testObj.runDataArray[i].name
                 distance = (testObj.runDataArray[i].distance/1000).toFixed(1) + 'km';
                 totalTime = (testObj.runDataArray[i].totalTime/60).toFixed(0) + 'min' + Math.floor(testObj.runDataArray[i].totalTime) +"s";
                 speed = (testObj.runDataArray[i].speed*3.6).toFixed(1) + 'km/hr';
                 
-                var fieldArray = [speed, totalTime, distance, date];
+                var fieldArray = [speed, totalTime, distance, name];
                 for (j = 0; j < fieldArray.length; j++) {
                     
                     var newCell  = newRow.insertCell(0);
@@ -173,27 +128,27 @@
                     var newText  = document.createTextNode(fieldArray[j])
                     newCell.appendChild(newText);
                 }
-                
-                 
-            
             }
             
-            
-            
+            dataRead.push(JSON.parse(window.localStorage.getItem(window.localStorage.key(i))));
                 
             function deleteRow(r) {
-		var i = r.parentNode.parentNode.rowIndex;
+		
+                var i = r.parentNode.parentNode.rowIndex;
                 document.getElementById("mytable").deleteRow(i);
-        }
+        
+            }
             
            
       </script>
         
-    
-        
       
       </div>
-  </main>
-</div>
+  
+    </main>
+
+      </div>
+    
     </body>
+
 </html>

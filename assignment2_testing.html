@@ -366,6 +366,21 @@
                           
                           function saveButton(){
                               
+                              runName = prompt("Enter in an unique name or press cancel to leave it blank")
+                              
+                              
+                              if (runName == "") 
+                              {
+                                  currentRun.name = "Untitled"
+                              } 
+                              else if (runName == null)
+                              {
+                                  currentRun.name = "Untitled"
+                              }
+                              else
+                              {
+                                  currentRun.name = runName
+                              }
                               
                               if (JSON.parse(localStorage.getItem('allRunningData'))==null)
                               {
@@ -386,7 +401,7 @@
                               
                                   localStorage.setItem('allRunningData', JSON.stringify(testObj))
                               
-                                  window.open("https://eng1003.eng.monash.edu/g1skr/slebr1-2","_system") 
+                                  window.open("https://eng1003.eng.monash.edu/g1skr/slebr1-2","_self") 
                               
                               }
                                                           
