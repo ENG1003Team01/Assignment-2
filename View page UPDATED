@@ -20,7 +20,7 @@
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--small-screen"> <!----changed to small screen-->
-        <a class="mdl-navigation__link" href="">Link to another page(dunno if necessary)</a>
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-navigation__link" href="https://eng1003.eng.monash.edu/g1skr/slebr1">New run</a>
       </nav>
     </div>
   </header>
@@ -37,16 +37,47 @@
     <div class="page-content"><!-- Your content goes here -->
         
     <!------------ TABLE HEADERS ---------->
-        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp"id=mytable>
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--mdl-shadow--2dp"id=mytable>
   <thead>
     <tr>
       <th class="mdl-data-table__cell--non-numeric">Runs</th>
       <th>Time taken</th>
       <th>Distance covered</th>
       <th>Date</th>
+<th> 
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">run 1</td>
+      <td>25</td>
+      <td>2.91</td>
+      <td>2.91</td>
+      <td><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"id = "delete" onclick=deleteRow(this)>
+  Delete
+</button></td>
+    </tr>
+<tr>
+      <td class="mdl-data-table__cell--non-numeric">run 2</td>
+      <td>25</td>
+      <td>2.90</td>
+      <td>2.90</td>
+      <td><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"id = "delete" onclick=deleteRow(this)>
+  Delete
+</button></td>
+    </tr>
+
+<tr>
+      <td class="mdl-data-table__cell--non-numeric"id=row>run 3</td>
+      <td>25</td>
+      <td>2.92</td>
+      <td>2.92</td>
+      <td><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"id = "delete" onclick=deleteRow(this)>
+  Delete
+</button></td>
+    </tr>
+ 
+	
       
       
         </tbody>
@@ -57,17 +88,18 @@
         
       
    <!------------- DELETE BUTTON CONTENT --------------->
-<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"id = "delete" onclick=deleteRow()>
+<!--<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"id = "delete" onclick="deleteRow()>
   Delete
-</button>
+</button>-->
  
            
  <!------------- NEW RUN BUTTON CONTENT --------------->
    <!----- SHOULD LINK TO ACTUAL RUNNING PAGE ------->
 <!-- made a create function but new run button should link to another page-->
-<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"id = "create" onclick=create()>
+<!-- <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"id = "create" onclick=link>
   New run
 </button>
+</button> -->
         
           
           <label id="new"></label>
@@ -77,6 +109,7 @@
         <!---- to make it selectable and delete --->
         <!---- can't make use of textfields to name runs in here--->
 <!-- New run button should be linked to the run page -->
+        <!-- will need to create rows to pull from memory-->
         <script>
             function create(){
             var table = document.getElementById("mytable");
@@ -93,27 +126,29 @@
             }
                 
             function deleteRow(r) {
-                document.getElementById("mytable").deleteRow(1);
+		var i = r.parentNode.parentNode.rowIndex;
+                document.getElementById("mytable").deleteRow(i);
         }
             
            
       </script>
         
     <!---- FUNCTION to find best run ---->
+        <!-- still need to create function -->
         </script>
-           <!-- function besttime(){
+           <!--function besttime(){
             var run;
-            var average time taken
+            var averagetime
             for (var i; i <= runid.length; i++){
             if 
             
             }
-                                         } -->      
+                                         }-->
       
       
       
       </script>
-         
+        
       
       </div>
   </main>
