@@ -6,7 +6,9 @@
         <!-- Material Design icon font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link href="http:// google.com/mapfiles/ms/micons">
-    
+        
+        
+        
         <meta name="viewport" content="initial-scale=1.0">    
         <meta charset="utf-8">
       
@@ -17,6 +19,7 @@
             
             #start-button {
                 background-color: #009934;
+                opacity: 0.6;
                 float: left;
                 width: 50%;
             }
@@ -33,6 +36,7 @@
                 opacity: 0.6;
                 float: left;
                 width: 50%;
+            
             }
             
             #save-button {
@@ -40,7 +44,11 @@
                 opacity: 0.6;
                 float: right;
                 width: 50%;
+                
             }
+                
+            
+           
             
         </style>
       
@@ -54,20 +62,26 @@
               <div class="mdl-layout__header-row">
                   
                   <!-- Title -->
-                  <span class="mdl-layout-title">Do It!</span>
+                  <span class="mdl-layout-title">Title</span>
                   
               </div>
       
           </header>
           
+     
           <div class="mdl-layout__drawer">
-              <span class="mdl-layout-title"><b><font size = 4>Menu</font></b></span>
+              <span class="mdl-layout-title">Title</span>
               <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href=""><img src="http://i628.photobucket.com/albums/uu2/racheldeck/27187016-57f0-4e78-8319-13481aa6157c_zpsmdwirsvf.png" border="0" alt=" photo 27187016-57f0-4e78-8319-13481aa6157c_zpsmdwirsvf.png"/></a></a><b>Home</b>
-          <a class="mdl-navigation__link" href=""><img src="http://i628.photobucket.com/albums/uu2/racheldeck/c211c848-e1b6-4dc8-9cc8-5d32f12615ad_zpssdblskcr.png" border="0" alt=" photo c211c848-e1b6-4dc8-9cc8-5d32f12615ad_zpssdblskcr.png"/></a></a><b>Run History</b>
+                  <a class="mdl-navigation__link" href="">Link</a>
+                  <a class="mdl-navigation__link" href="">Link</a>
+                  <a class="mdl-navigation__link" href="">Link</a>
+                  <a class="mdl-navigation__link" href="">Link</a>
               </nav>
           </div>
           
+        
+          
+
         
           <main class="mdl-layout__content">
           
@@ -75,7 +89,7 @@
                   <div id="map"></div>
                   
                   <script>
-                    
+                      
                       var currentRun = new runningData()
                       var self = this;
                       function runningData(){
@@ -88,6 +102,11 @@
                           this.name;
                           this.today;
                       };
+                      
+                      var testObj = new runStorage()
+                      function runStorage(){                      
+                          this.runDataArray = [];                        
+                      }
                       
                       
                       var today = new Date();
@@ -103,8 +122,7 @@
                           mm='0'+mm
                       } 
                       currentRun.today = dd+'/'+mm+'/'+yyyy;
-                      
-                      
+                                            
                       var watchID;
                       
                       var map;
@@ -128,9 +146,7 @@
                               zoom: 15  
                           });
                             
-                          var infoWindow = new google.maps.InfoWindow({map: map});
-
-  
+                          var infoWindow = new google.maps.InfoWindow({map: map});  
                             
                           if (navigator.geolocation) {    
                               watchID = navigator.geolocation.watchPosition(function(position) {      
@@ -138,10 +154,8 @@
                                       lat: position.coords.latitude,        
                                       lng: position.coords.longitude      
                                   };
-
-                                  //infoWindow.setPosition(pos);      
-                                  //infoWindow.setContent(position.coords.longitude.toFixed(6) + " " + lngCoords[0]);
-
+                                  document.getElementById("start-button").disabled = false;
+                                  document.getElementById("start-button").style.opacity = "1";
 
                                   map.setCenter(pos);
                                   currentRun.lngCoords.push(position.coords.longitude);
@@ -181,8 +195,7 @@
                               
                               document.getElementById("start-button").disabled = true;
                               document.getElementById("start-button").style.opacity = "0.6";
-                              document.getElementById("stop-button").disabled = false;
-                              document.getElementById("stop-button").style.opacity = "1";
+                              
                               
                               navigator.geolocation.clearWatch(watchID)
                               
@@ -196,6 +209,8 @@
                                           lat: position.coords.latitude,        
                                           lng: position.coords.longitude      
                                       };
+                                      document.getElementById("stop-button").disabled = false;
+                              document.getElementById("stop-button").style.opacity = "1";
                                       
                                       map.setCenter(pos);
                                       currentRun.lngCoords.push(position.coords.longitude);
@@ -205,18 +220,18 @@
                                       
                                       path.push(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
                                       
-                                      
+                                      /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                      //%%%%%%%%%%%%%%%%%%%%%%%%% CREATES A PATH FOR TESTING - NEED TO REMOVE %%%%%%%%%%%%%%%%%%%%%%%%
+                                      //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                       for(var i = 0; i < 5; i++) {
-            // Create a random point using the user current position and a random generated number.
-            // The number will be once positive and once negative using based on the parity of i
-            // and to reduce the range the number is divided by 10
-            path.push(
-              new google.maps.LatLng(
-                position.coords.latitude + (Math.random() / 10 * ((i % 2) ? 1 : -1)),
-                position.coords.longitude + (Math.random() / 10 * ((i % 2) ? 1 : -1))
-              )
-            );
-          }
+                                          path.push(
+                                              new google.maps.LatLng(
+                                                  position.coords.latitude + (Math.random() / 10 * ((i % 2) ? 1 : -1)),
+                                                  position.coords.longitude + (Math.random() / 10 * ((i % 2) ? 1 : -1))
+                                              )
+                                          );
+                                      }
+                                      //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
                                       
                                       polyline = new google.maps.Polyline({            
                                           map: map,            
@@ -341,6 +356,9 @@
                           
                           }
                           
+                          //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                          //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                          //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                           
                           document.getElementById("save-button").addEventListener("click", function(event) {
                               saveButton();
@@ -348,10 +366,30 @@
                           
                           function saveButton(){
                               
-                              currentRun.name = prompt("Enter a name for the run.")    
                               
-                              localStorage.setItem(currentRun.name, JSON.stringify(currentRun))
+                              if (JSON.parse(localStorage.getItem('allRunningData'))==null)
+                              {
                               
+                                  //testObj = JSON.parse(localStorage.getItem('alRunningData'))
+
+                                  testObj.runDataArray.push(currentRun)        
+
+                                  localStorage.setItem('allRunningData', JSON.stringify(testObj))
+
+                                  window.open("https://eng1003.eng.monash.edu/g1skr/slebr1-2","_system")                              
+                              }
+                              else 
+                              {
+                                  testObj = JSON.parse(localStorage.getItem('allRunningData'))
+                            
+                                  testObj.runDataArray.push(currentRun)        
+                              
+                                  localStorage.setItem('allRunningData', JSON.stringify(testObj))
+                              
+                                  window.open("https://eng1003.eng.monash.edu/g1skr/slebr1-2","_system") 
+                              
+                              }
+                                                          
                           }
                           
                           
@@ -379,7 +417,7 @@
           </main>
           
           <div>
-          <button id="start-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Start</button>
+          <button id="start-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled>Start</button>
           <button id="stop-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled>Stop</button>
           </div>
           
