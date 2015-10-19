@@ -29,7 +29,7 @@
     <span class="mdl-layout-title">Side functions</span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="">Return to main menu</a>
-      <a class="mdl-navigation__link" href="https://www.google.com.au/maps">Google maps</a>
+      <a class="mdl-navigation__link" href="">New run</a>
       <a class="mdl-navigation__link" href="http://www.monash.edu/">Monash website</a>
     </nav>
   </div>
