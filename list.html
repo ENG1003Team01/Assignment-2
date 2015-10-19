@@ -1,0 +1,125 @@
+<html>
+    <head>
+        <!-- Material Design Lite -->
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.blue_grey-indigo.min.css">
+        <!-- Material Design icon font -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <meta name="viewport" content="initial-scale=1.0"> 
+        <meta charset="utf-8">
+        
+        <style>
+            
+            table {
+                table-layout: fixed;
+                width: 100%;
+                text-align: center;
+            }
+          
+            td {
+                text-align: center;
+            }
+          
+            tr {
+                text-align: center;
+            }
+            
+            a {
+                text-decoration: none;
+                color: black;
+            }
+            
+        </style>
+    </head>
+ 
+    <body>
+        
+
+        <!------------------ LAYOUT FIXED HEADER ---------------->
+      
+
+        <!-------------------- HEADER CONTENT------------------------>
+
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+      
+                    <!-- Title -->
+                    <span class="mdl-layout-title">Do It!</span>
+    
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
+ 
+                    <!-- Navigation. We hide it in small screens. -->
+                    <nav class="mdl-navigation mdl-layout--small-screen"> <!----changed to small screen-->
+  
+                        <a href="https://eng1003.eng.monash.edu/g1skr/record"><button id="start-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" >New Run</button></a>
+                        
+  
+                    </nav>
+                </div>
+            </header>
+            
+    
+            <!------------------DRAWER CONTENT---------------->
+  
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title"><b><font size = 4>Menu</font></b></span>
+        
+                <nav class="mdl-navigation">
+                    <a href="https://eng1003.eng.monash.edu/g1skr/home" target="_self"><img src="https://eng1003.eng.monash.edu/g1skr/home-icon" /><b>Home</b></a>
+                    <a href="https://eng1003.eng.monash.edu/g1skr/record" target="_self"><img src="https://eng1003.eng.monash.edu/g1skr/run-icon" /><b>Get Running!</b></a>
+                    <a href="https://eng1003.eng.monash.edu/g1skr/list" target="_self"><img src="https://eng1003.eng.monash.edu/g1skr/list-icon" /><b>Run History</b></a>
+                </nav>
+      
+            </div>
+  
+            <main class="mdl-layout__content">
+    
+                <div class="page-content"><!-- Your content goes here -->
+        
+    
+                    <!------------ TABLE HEADERS ---------->
+        
+        
+                    <table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" id="myTable" style="width:100%">
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Name</th>
+                            <th>Distance</th>
+                            <th>Time</th>
+                            <th>Ave. Speed</th>
+                        </tr>
+                    </table>
+        
+                    <script>
+                        
+                        testObj = JSON.parse(localStorage.getItem('allRunningData'))
+            
+                        var tableRef = document.getElementById('myTable'); //grabs table
+                        
+                        // goes through array to bring out all runs and out puts            
+                        for (var i = 0; i < testObj.runDataArray.length; i++){
+                
+                            var newRow   = tableRef.insertRow(1)
+                
+                            name = testObj.runDataArray[i].name
+                            distance = (testObj.runDataArray[i].distance/1000).toFixed(1) + 'km';
+                            totalTime = (testObj.runDataArray[i].totalTime/60).toFixed(0) + 'min' + Math.floor(testObj.runDataArray[i].totalTime) +"s";
+                            speed = (testObj.runDataArray[i].speed*3.6).toFixed(1) + 'km/hr';
+                            
+                            // inserts the cells in the specific order, this allows for the most recent run to be on top
+                            var fieldArray = [speed, totalTime, distance, name];
+                            for (j = 0; j < fieldArray.length; j++) {                   
+                                var newCell  = newRow.insertCell(0);
+                                var newText  = document.createTextNode(fieldArray[j])
+                                newCell.appendChild(newText);
+                            }
+                        }
+                
+                    </script>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
