@@ -1,0 +1,199 @@
+<html>
+  <head>
+    <!-- Material Design Lite -->
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      
+      
+      <meta name="viewport" content="initial-scale=1.0"> 
+      <meta charset="utf-8">
+      
+      <style>
+          
+          table {
+              table-layout: fixed;
+              width: 100%;
+              text-align: center;
+          }
+          
+          td {
+              text-align: center;         
+          }
+          
+          tr {
+              text-align: center;         
+          }
+      
+      
+      
+      
+      
+      </style>
+      
+      
+  </head>
+  <body>
+        
+<!------------------ LAYOUT FIXED HEADER ---------------->
+      <!-- Always shows a header, even in smaller screens. -->
+<!-------------------- HEADER CONTENT------------------------>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">List of runs menu</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--small-screen"> <!----changed to small screen-->
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-navigation__link" href="https://eng1003.eng.monash.edu/g1skr/slebr1">New run</a>
+      </nav>
+    </div>
+  </header>
+    <!------------------DRAWER CONTENT---------------->
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Side functions</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="">Return to main menu</a>
+      <a class="mdl-navigation__link" href="https://www.google.com.au/maps">Google maps</a>
+      <a class="mdl-navigation__link" href="http://www.monash.edu/">Monash website</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content"><!-- Your content goes here -->
+        
+    <!------------ TABLE HEADERS ---------->
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--mdl-shadow--2dp" id="myTable" style="width:100%">
+  
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">Date</th>
+      <th>Distance</th>
+      <th>Time</th>
+      <th>Ave. Speed</th>
+
+    </tr>
+  
+            
+            
+  
+      <!--
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">run 1</td>
+      <td>25</td>
+      <td>2.91</td>
+      <td>2.91</td>
+      <td><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"id = "delete" onclick=deleteRow(this)>
+  Delete
+</button></td>
+    </tr>
+<tr>
+      <td class="mdl-data-table__cell--non-numeric">run 2</td>
+      <td>25</td>
+      <td>2.90</td>
+      <td>2.90</td>
+      <td><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"id = "delete" onclick=deleteRow(this)>
+  Delete
+</button></td>
+    </tr>
+
+<tr>
+      <td class="mdl-data-table__cell--non-numeric"id=row>run 3</td>
+      <td>25</td>
+      <td>2.92</td>
+      <td>2.92</td>
+      <td><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"id = "delete" onclick=deleteRow(this)>
+  Delete
+</button></td>
+    </tr>
+       -->
+
+
+
+</table>
+        
+   <!------------- TABLE OF RUNS CONTENT --------------->
+        
+        
+      
+   <!------------- DELETE BUTTON CONTENT --------------->
+<!--<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"id = "delete" onclick="deleteRow()>
+  Delete
+</button>-->
+ 
+           
+ <!------------- NEW RUN BUTTON CONTENT --------------->
+   <!----- SHOULD LINK TO ACTUAL RUNNING PAGE ------->
+<!-- made a create function but new run button should link to another page-->
+<!-- <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"id = "create" onclick=link>
+  New run
+</button>
+</button> -->
+        
+          
+          <label id="new"></label>
+        
+    <!------------ NEW RUN FUNCTION ------------------>
+    <!----- Need to figure out how to link it to table ------->
+        <!---- to make it selectable and delete --->
+        <!---- can't make use of textfields to name runs in here--->
+<!-- New run button should be linked to the run page -->
+        <!-- will need to create rows to pull from memory-->
+        <script>
+            
+            
+            testObj = JSON.parse(localStorage.getItem('allRunningData'))
+            
+            
+            var tableRef = document.getElementById('myTable');
+            
+            // Insert a row in the table at the last row
+            //var newRow   = tableRef.insertRow(1)
+
+            
+            // Insert a cell in the row at index 0
+            //var newCell  = newRow.insertCell(0);
+
+            
+            for (var i = 0; i < testObj.runDataArray.length; i++){
+                
+                var newRow   = tableRef.insertRow(1)
+                
+                date = testObj.runDataArray[i].today
+                distance = (testObj.runDataArray[i].distance/1000).toFixed(1) + 'km';
+                totalTime = (testObj.runDataArray[i].totalTime/60).toFixed(0) + 'min' + Math.floor(testObj.runDataArray[i].totalTime) +"s";
+                speed = (testObj.runDataArray[i].speed*3.6).toFixed(1) + 'km/hr';
+                
+                var fieldArray = [speed, totalTime, distance, date];
+                for (j = 0; j < fieldArray.length; j++) {
+                    
+                    var newCell  = newRow.insertCell(0);
+                    
+                    var newText  = document.createTextNode(fieldArray[j])
+                    newCell.appendChild(newText);
+                }
+                
+                 
+            
+            }
+            
+            
+            
+                
+            function deleteRow(r) {
+		var i = r.parentNode.parentNode.rowIndex;
+                document.getElementById("mytable").deleteRow(i);
+        }
+            
+           
+      </script>
+        
+    
+        
+      
+      </div>
+  </main>
+</div>
+    </body>
+</html>
